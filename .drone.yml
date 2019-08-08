@@ -1,0 +1,116 @@
+kind: pipeline
+name: default
+
+steps:
+- name: generate-versions
+  image: debian:9
+  settings:
+    build_args:
+    - JITSI_RELEASE=stable
+  commands:
+  - echo "deb https://download.jitsi.org $JITSI_RELEASE/" > /etc/apt/sources.list.d/jitsi.list
+  - echo "deb http://ftp.debian.org/debian stretch-backports main" > /etc/apt/sources.list.d/backports.list
+  - apt-get update
+  - apt-get install -y jq curl
+  - curl -s 'https://api.github.com/repos/just-containers/s6-overlay/releases/latest' | jq -r '.assets[].browser_download_url' | grep -e 'amd64.tar.gz$' | tr -d '\n' > base/dl_url_s6-overlay
+  - curl -s 'https://api.github.com/repos/subchen/frep/releases/latest' | jq -r '.assets[].browser_download_url' | grep -e '-linux-amd64$' | tr -d '\n' > base/dl_url_frep
+  - apt-cache policy jitsi-meet-web | sed -n -e 's/^.*Candidate: //p' | tr -d '\n' > web/version
+  - apt-cache policy jicofo | sed -n -e 's/^.*Candidate: //p' | tr -d '\n' > jicofo/version
+  - apt-cache policy jigasi | sed -n -e 's/^.*Candidate: //p' | tr -d '\n' > jigasi/version
+  - apt-cache policy jitsi-videobridge | sed -n -e 's/^.*Candidate: //p' | tr -d '\n' > jvb/version
+  - apt-cache policy prosody | sed -n -e 's/^.*Candidate: //p' | tr -d '\n' > prosody/version
+
+- name: docker-jitsi-base
+  image: plugins/docker
+  settings:
+    repo: tlemarchand/jitsi-base
+    tags: latest
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+
+- name: docker-jitsi-base-java
+  image: plugins/docker
+  settings:
+    repo: tlemarchand/jitsi-base-java
+    tags: latest
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+
+- name: set-tag-web
+  image: alpine/3.10
+  commands:
+  - cat web/version > .tags
+  - echo ',latest' >> .tags
+
+- name: docker-jitsi-web
+  image: plugins/docker
+  settings:
+    repo: tlemarchand/jitsi-web
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+
+- name: set-tag-jicofo
+  image: alpine/3.10
+  commands:
+  - cat jicofo/version > .tags
+  - echo ',latest' >> .tags
+
+- name: docker-jitsi-jicofo
+  image: plugins/docker
+  settings:
+    repo: tlemarchand/jitsi-jicofo
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+
+- name: set-tag-jigasi
+  image: alpine/3.10
+  commands:
+  - cat jigasi/version > .tags
+  - echo ',latest' >> .tags
+
+- name: docker-jitsi-jigasi
+  image: plugins/docker
+  settings:
+    repo: tlemarchand/jitsi-jigasi
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+
+- name: set-tag-jvb
+  image: alpine/3.10
+  commands:
+  - cat jvb/version > .tags
+  - echo ',latest' >> .tags
+
+- name: docker-jitsi-jvb
+  image: plugins/docker
+  settings:
+    repo: tlemarchand/jitsi-jvb
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+
+- name: set-tag-prosody
+  image: alpine/3.10
+  commands:
+  - cat prosody/version > .tags
+  - echo ',latest' >> .tags
+
+- name: docker-jitsi-prosody
+  image: plugins/docker
+  settings:
+    repo: tlemarchand/jitsi-prosody   
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password

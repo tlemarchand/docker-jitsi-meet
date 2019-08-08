@@ -1,8 +1,10 @@
 FROM jitsi/base
 
+COPY prosody/version /tmp/
+
 RUN \
 	apt-dpkg-wrap apt-get update && \
-	apt-dpkg-wrap apt-get install -t stretch-backports -y prosody && \
+	apt-dpkg-wrap apt-get install -t stretch-backports -y prosody=`cat /tmp/version` && \
 	apt-cleanup && \
 	rm -rf /etc/prosody
 
