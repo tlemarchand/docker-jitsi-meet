@@ -46,7 +46,7 @@ steps:
   image: alpine:3.10
   commands:
   - cat web/version | cut -d~ -f 1 | cut -d+ -f 1 > .tags
-  - echo ',latest' >> .tags
+  - echo ',latest,$DRONE_BUILD_NUMBER' >> .tags
 
 - name: docker-jitsi-web
   image: plugins/docker
@@ -62,7 +62,7 @@ steps:
   image: alpine:3.10
   commands:
   - cat jicofo/version | cut -d~ -f 1 | cut -d+ -f 1 > .tags
-  - echo ',latest' >> .tags
+  - echo ',latest,$DRONE_BUILD_NUMBER' >> .tags
 
 - name: docker-jitsi-jicofo
   image: plugins/docker
@@ -78,7 +78,7 @@ steps:
   image: alpine:3.10
   commands:
   - cat jigasi/version | cut -d~ -f 1 | cut -d+ -f 1 > .tags
-  - echo ',latest' >> .tags
+  - echo ',latest,$DRONE_BUILD_NUMBER' >> .tags
 
 - name: docker-jitsi-jigasi
   image: plugins/docker
@@ -94,7 +94,7 @@ steps:
   image: alpine:3.10
   commands:
   - cat jvb/version | cut -d~ -f 1 | cut -d+ -f 1 > .tags
-  - echo ',latest' >> .tags
+  - echo ',latest,$DRONE_BUILD_NUMBER' >> .tags
 
 - name: docker-jitsi-jvb
   image: plugins/docker
@@ -110,7 +110,7 @@ steps:
   image: alpine:3.10
   commands:
   - cat prosody/version | cut -d~ -f 1 | cut -d+ -f 1 > .tags
-  - echo ',latest' >> .tags
+  - echo ',latest,$DRONE_BUILD_NUMBER' >> .tags
 
 - name: docker-jitsi-prosody
   image: plugins/docker
