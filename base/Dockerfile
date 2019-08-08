@@ -12,8 +12,8 @@ COPY rootfs /
 RUN \
 	apt-dpkg-wrap apt-get update && \
 	apt-dpkg-wrap apt-get install -y apt-transport-https apt-utils ca-certificates gnupg wget && \
-	wget -O /tmp/s6-overlay.tar.gz `cat /tmp/dl_url_s6-overlay`
-	wget -O /usr/bin/frep `cat /tmp/dl_url_frep`
+	wget -O /tmp/s6-overlay.tar.gz `cat /tmp/dl_url_s6-overlay` && \
+	wget -O /usr/bin/frep `cat /tmp/dl_url_frep` && \
 	tar xfz /tmp/s6-overlay.tar.gz -C / && \
 	rm -f /tmp/*.tar.gz && \
 	apt-key add /tmp/jitsi.key && \
