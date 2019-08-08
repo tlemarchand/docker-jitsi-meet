@@ -7,7 +7,6 @@ RUN \
 	apt-dpkg-wrap apt-get install -y jicofo=`cat /tmp/version` && \
 	apt-cleanup
 
-COPY rootfs/ /
+COPY jicofo/rootfs/ /
 
 VOLUME /config
-

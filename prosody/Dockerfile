@@ -8,7 +8,7 @@ RUN \
 	apt-cleanup && \
 	rm -rf /etc/prosody
 
-COPY rootfs/ /
+COPY prosody/rootfs/ /
 
 EXPOSE 5222 5269 5347 5280
 

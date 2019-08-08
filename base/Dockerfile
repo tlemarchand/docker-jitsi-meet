@@ -7,7 +7,7 @@ COPY base/dl_url_frep /tmp/
 
 ADD https://download.jitsi.org/jitsi-key.gpg.key /tmp/jitsi.key
 
-COPY rootfs /
+COPY base/rootfs /
 
 RUN \
 	apt-dpkg-wrap apt-get update && \

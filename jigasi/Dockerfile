@@ -7,6 +7,6 @@ RUN \
 	apt-dpkg-wrap apt-get install -y jigasi=`cat /tmp/version` && \
 	apt-cleanup
 
-COPY rootfs/ /
+COPY jigasi/rootfs/ /
 
 VOLUME /config

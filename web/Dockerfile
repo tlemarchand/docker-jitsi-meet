@@ -10,7 +10,7 @@ RUN \
 	rm -f /etc/nginx/conf.d/default.conf && \
 	rm -f /usr/share/jitsi-meet/interface_config.js
 
-COPY rootfs/ /
+COPY web/rootfs/ /
 
 EXPOSE 80 443
 
