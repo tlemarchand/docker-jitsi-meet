@@ -22,6 +22,7 @@ steps:
 - name: docker-jitsi-base
   image: plugins/docker
   settings:
+    dockerfile: base/Dockerfile
     repo: tlemarchand/jitsi-base
     tags: latest
     username:
@@ -32,6 +33,7 @@ steps:
 - name: docker-jitsi-base-java
   image: plugins/docker
   settings:
+    dockerfile: base-java/Dockerfile
     repo: tlemarchand/jitsi-base-java
     tags: latest
     username:
@@ -48,6 +50,7 @@ steps:
 - name: docker-jitsi-web
   image: plugins/docker
   settings:
+    dockerfile: web/Dockerfile
     repo: tlemarchand/jitsi-web
     username:
       from_secret: docker_username
@@ -63,6 +66,7 @@ steps:
 - name: docker-jitsi-jicofo
   image: plugins/docker
   settings:
+    dockerfile: jicofo/Dockerfile
     repo: tlemarchand/jitsi-jicofo
     username:
       from_secret: docker_username
@@ -78,6 +82,7 @@ steps:
 - name: docker-jitsi-jigasi
   image: plugins/docker
   settings:
+    dockerfile: jigasi/Dockerfile
     repo: tlemarchand/jitsi-jigasi
     username:
       from_secret: docker_username
@@ -93,6 +98,7 @@ steps:
 - name: docker-jitsi-jvb
   image: plugins/docker
   settings:
+    dockerfile: jvb/Dockerfile
     repo: tlemarchand/jitsi-jvb
     username:
       from_secret: docker_username
@@ -108,6 +114,7 @@ steps:
 - name: docker-jitsi-prosody
   image: plugins/docker
   settings:
+    dockerfile: prosody/Dockerfile
     repo: tlemarchand/jitsi-prosody   
     username:
       from_secret: docker_username
