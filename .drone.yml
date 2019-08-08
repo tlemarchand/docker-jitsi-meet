@@ -4,11 +4,8 @@ name: default
 steps:
 - name: generate-versions
   image: debian:9
-  settings:
-    build_args:
-    - JITSI_RELEASE=stable
   commands:
-  - echo "deb https://download.jitsi.org $JITSI_RELEASE/" > /etc/apt/sources.list.d/jitsi.list
+  - echo "deb https://download.jitsi.org stable/" > /etc/apt/sources.list.d/jitsi.list
   - echo "deb http://ftp.debian.org/debian stretch-backports main" > /etc/apt/sources.list.d/backports.list
   - apt-get update
   - apt-get install -y jq curl
