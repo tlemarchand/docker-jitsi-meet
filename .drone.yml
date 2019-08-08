@@ -5,6 +5,7 @@ steps:
 - name: generate-versions
   image: debian:9
   commands:
+  - cp base/90prosody-backports /etc/apt/preferences.d/
   - apt-get update
   - apt-get install -y apt-transport-https
   - echo "deb https://download.jitsi.org stable/" > /etc/apt/sources.list.d/jitsi.list
@@ -44,7 +45,7 @@ steps:
 - name: set-tag-web
   image: alpine:3.10
   commands:
-  - cat web/version > .tags
+  - cat web/version | cut -d~ -f 1 | cut -d+ -f 1 > .tags
   - echo ',latest' >> .tags
 
 - name: docker-jitsi-web
@@ -60,7 +61,7 @@ steps:
 - name: set-tag-jicofo
   image: alpine:3.10
   commands:
-  - cat jicofo/version > .tags
+  - cat jicofo/version | cut -d~ -f 1 | cut -d+ -f 1 > .tags
   - echo ',latest' >> .tags
 
 - name: docker-jitsi-jicofo
@@ -76,7 +77,7 @@ steps:
 - name: set-tag-jigasi
   image: alpine:3.10
   commands:
-  - cat jigasi/version > .tags
+  - cat jigasi/version | cut -d~ -f 1 | cut -d+ -f 1 > .tags
   - echo ',latest' >> .tags
 
 - name: docker-jitsi-jigasi
@@ -92,7 +93,7 @@ steps:
 - name: set-tag-jvb
   image: alpine:3.10
   commands:
-  - cat jvb/version > .tags
+  - cat jvb/version | cut -d~ -f 1 | cut -d+ -f 1 > .tags
   - echo ',latest' >> .tags
 
 - name: docker-jitsi-jvb
@@ -108,7 +109,7 @@ steps:
 - name: set-tag-prosody
   image: alpine:3.10
   commands:
-  - cat prosody/version > .tags
+  - cat prosody/version | cut -d~ -f 1 | cut -d+ -f 1 > .tags
   - echo ',latest' >> .tags
 
 - name: docker-jitsi-prosody

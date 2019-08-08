@@ -1,5 +1,6 @@
 FROM jitsi/base
 
+COPY base/90prosody-backports /etc/apt/preferences.d/
 COPY prosody/version /tmp/
 
 RUN \
