@@ -6,7 +6,7 @@ steps:
   image: debian:9
   commands:
   - apt-get update
-  - apt-get install apt-transport-https
+  - apt-get install -y apt-transport-https
   - echo "deb https://download.jitsi.org stable/" > /etc/apt/sources.list.d/jitsi.list
   - echo "deb http://ftp.debian.org/debian stretch-backports main" > /etc/apt/sources.list.d/backports.list
   - apt-get update
