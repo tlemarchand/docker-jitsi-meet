@@ -42,7 +42,7 @@ steps:
       from_secret: docker_password
 
 - name: set-tag-web
-  image: alpine/3.10
+  image: alpine:3.10
   commands:
   - cat web/version > .tags
   - echo ',latest' >> .tags
@@ -58,7 +58,7 @@ steps:
       from_secret: docker_password
 
 - name: set-tag-jicofo
-  image: alpine/3.10
+  image: alpine:3.10
   commands:
   - cat jicofo/version > .tags
   - echo ',latest' >> .tags
@@ -74,7 +74,7 @@ steps:
       from_secret: docker_password
 
 - name: set-tag-jigasi
-  image: alpine/3.10
+  image: alpine:3.10
   commands:
   - cat jigasi/version > .tags
   - echo ',latest' >> .tags
@@ -90,7 +90,7 @@ steps:
       from_secret: docker_password
 
 - name: set-tag-jvb
-  image: alpine/3.10
+  image: alpine:3.10
   commands:
   - cat jvb/version > .tags
   - echo ',latest' >> .tags
@@ -106,7 +106,7 @@ steps:
       from_secret: docker_password
 
 - name: set-tag-prosody
-  image: alpine/3.10
+  image: alpine:3.10
   commands:
   - cat prosody/version > .tags
   - echo ',latest' >> .tags
