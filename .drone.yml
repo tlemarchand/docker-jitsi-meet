@@ -19,6 +19,7 @@ steps:
   - "apt-cache policy jigasi | sed -n -e 's/^.*Candidate: //p' | tr -d '\n' > jigasi/version"
   - "apt-cache policy jitsi-videobridge | sed -n -e 's/^.*Candidate: //p' | tr -d '\n' > jvb/version"
   - "apt-cache policy prosody | sed -n -e 's/^.*Candidate: //p' | tr -d '\n' > prosody/version"
+  - cp web/version web-ng/version
 
 - name: docker-jitsi-base
   image: plugins/docker
@@ -53,6 +54,16 @@ steps:
   settings:
     dockerfile: web/Dockerfile
     repo: tlemarchand/jitsi-web
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+
+- name: docker-jitsi-web-ng
+  image: plugins/docker
+  settings:
+    dockerfile: web-ng/Dockerfile
+    repo: tlemarchand/jitsi-web-ng
     username:
       from_secret: docker_username
     password:
