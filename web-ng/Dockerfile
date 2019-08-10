@@ -1,12 +1,12 @@
 FROM nginx:1.17
 
-ARG JITSI_RELEASE stable
+ARG JITSI_RELEASE=stable
 
-ENV JICOFO_AUTH_USER focus
-ENV XMPP_DOMAIN meet.jitsi
-ENV XMPP_AUTH_DOMAIN auth.meet.jitsi
-ENV XMPP_BOSH_URL_BASE http://prosody:5280
-ENV XMPP_MUC_DOMAIN muc.meet.jitsi
+ENV JICOFO_AUTH_USER=focus
+ENV XMPP_DOMAIN=meet.jitsi
+ENV XMPP_AUTH_DOMAIN=auth.meet.jitsi
+ENV XMPP_BOSH_URL_BASE=http://prosody:5280
+ENV XMPP_MUC_DOMAIN=muc.meet.jitsi
 
 ADD https://download.jitsi.org/jitsi-key.gpg.key /tmp/jitsi.key
 COPY web-ng/version /tmp/
