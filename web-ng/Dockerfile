@@ -15,7 +15,7 @@ COPY web-ng/jitsi-meet.conf.template /usr/share/templates/
 COPY web-ng/config.js.template /usr/share/templates/
 
 RUN apt-get update && \
-    apt-get install -y apt-transport-https apt-utils && \
+    apt-get install -y apt-transport-https apt-utils gnupg && \
     apt-key add /tmp/jitsi.key && \
     rm -f /tmp/jitsi.key && \
     echo "deb https://download.jitsi.org $JITSI_RELEASE/" > /etc/apt/sources.list.d/jitsi.list && \
