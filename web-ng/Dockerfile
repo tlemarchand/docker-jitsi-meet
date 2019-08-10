@@ -20,7 +20,7 @@ RUN apt-get update && \
     rm -f /tmp/jitsi.key && \
     echo "deb https://download.jitsi.org $JITSI_RELEASE/" > /etc/apt/sources.list.d/jitsi.list && \
     apt-get update && apt-get install -y jitsi-meet-web=`cat /tmp/version` && \
-    apt-get autoremove --purge -y && \
+    apt-get autoremove --purge -y gnupg && \
     rm -rf /var/lib/apt/lists/* && \
     rm -f /etc/nginx/conf.d/default.conf && \
     mkdir -p /etc/jitsi/meet/
