@@ -25,4 +25,4 @@ RUN apt-get update && \
     rm -f /etc/nginx/conf.d/default.conf && \
     mkdir -p /etc/jitsi/meet/
 
-CMD /bin/sh -c "envsubst '${XMPP_BOSH_URL_BASE}' < /usr/share/templates/jitsi-meet.conf.template > /etc/nginx/conf.d/jitsi-meet.conf && envsubst < /usr/share/templates/config.js.template > /etc/jitsi/meet/config.js && nginx -g 'daemon off;'"
+CMD envsubst '${XMPP_BOSH_URL_BASE}' < /usr/share/templates/jitsi-meet.conf.template > /etc/nginx/conf.d/jitsi-meet.conf && envsubst < /usr/share/templates/config.js.template > /etc/jitsi/meet/config.js && exec nginx -g 'daemon off;'
