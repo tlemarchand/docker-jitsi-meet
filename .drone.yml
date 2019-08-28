@@ -49,16 +49,6 @@ steps:
   - cat web/version | cut -d~ -f 1 | cut -d+ -f 1 > .tags
   - echo ,latest,build-$DRONE_BUILD_NUMBER >> .tags
 
-- name: docker-jitsi-web
-  image: plugins/docker
-  settings:
-    dockerfile: web/Dockerfile
-    repo: tlemarchand/jitsi-web
-    username:
-      from_secret: docker_username
-    password:
-      from_secret: docker_password
-
 - name: docker-jitsi-web-ng
   image: plugins/docker
   settings:
