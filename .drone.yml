@@ -45,7 +45,7 @@ steps:
 - name: set-tag-web
   image: alpine:3.10
   commands:
-  - cat web/version | cut -d~ -f 1 | cut -d+ -f 1 > .tags
+  - cat web-ng/version | cut -d~ -f 1 | cut -d+ -f 1 > .tags
   - echo ,latest,build-$DRONE_BUILD_NUMBER >> .tags
 
 - name: docker-jitsi-web-ng
