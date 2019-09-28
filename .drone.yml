@@ -61,7 +61,7 @@ steps:
 - name: set-tag-jicofo
   image: alpine:3.10
   commands:
-  - APPVERSION=`jicofo/version | cut -d~ -f 1 | cut -d+ -f 1`
+  - APPVERSION=`cat jicofo/version | cut -d~ -f 1 | cut -d+ -f 1`
   - echo $APPVERSION,latest,$APPVERSION-$DRONE_BUILD_NUMBER > .tags
 
 - name: docker-jitsi-jicofo
