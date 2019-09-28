@@ -45,8 +45,8 @@ steps:
 - name: set-tag-web
   image: alpine:3.10
   commands:
-  - cat web-ng/version | cut -d~ -f 1 | cut -d+ -f 1 > .tags
-  - echo ,latest,build-$DRONE_BUILD_NUMBER >> .tags
+  - APPVERSION=`cat web-ng/version | cut -d~ -f 1 | cut -d+ -f 1`
+  - echo $APPVERSION,latest,$APPVERSION-$DRONE_BUILD_NUMBER > .tags
 
 - name: docker-jitsi-web-ng
   image: plugins/docker
@@ -61,8 +61,8 @@ steps:
 - name: set-tag-jicofo
   image: alpine:3.10
   commands:
-  - cat jicofo/version | cut -d~ -f 1 | cut -d+ -f 1 > .tags
-  - echo ,latest,build-$DRONE_BUILD_NUMBER >> .tags
+  - APPVERSION=`jicofo/version | cut -d~ -f 1 | cut -d+ -f 1`
+  - echo $APPVERSION,latest,$APPVERSION-$DRONE_BUILD_NUMBER > .tags
 
 - name: docker-jitsi-jicofo
   image: plugins/docker
@@ -77,8 +77,8 @@ steps:
 - name: set-tag-jigasi
   image: alpine:3.10
   commands:
-  - cat jigasi/version | cut -d~ -f 1 | cut -d+ -f 1 > .tags
-  - echo ,latest,build-$DRONE_BUILD_NUMBER >> .tags
+  - APPVERSION=`cat jigasi/version | cut -d~ -f 1 | cut -d+ -f 1`
+  - echo $APPVERSION,latest,$APPVERSION-$DRONE_BUILD_NUMBER > .tags
 
 - name: docker-jitsi-jigasi
   image: plugins/docker
@@ -93,8 +93,8 @@ steps:
 - name: set-tag-jvb
   image: alpine:3.10
   commands:
-  - cat jvb/version | cut -d~ -f 1 | cut -d+ -f 1 > .tags
-  - echo ,latest,build-$DRONE_BUILD_NUMBER >> .tags
+  - APPVERSION=`cat jvb/version | cut -d~ -f 1 | cut -d+ -f 1`
+  - echo $APPVERSION,latest,$APPVERSION-$DRONE_BUILD_NUMBER > .tags
 
 - name: docker-jitsi-jvb
   image: plugins/docker
@@ -109,8 +109,8 @@ steps:
 - name: set-tag-prosody
   image: alpine:3.10
   commands:
-  - cat prosody/version | cut -d~ -f 1 | cut -d+ -f 1 > .tags
-  - echo ,latest,build-$DRONE_BUILD_NUMBER >> .tags
+  - APPVERSION=`cat prosody/version | cut -d~ -f 1 | cut -d+ -f 1`
+  - echo $APPVERSION,latest,$APPVERSION-$DRONE_BUILD_NUMBER > .tags
 
 - name: docker-jitsi-prosody
   image: plugins/docker
