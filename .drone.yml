@@ -3,7 +3,7 @@ name: default
 
 steps:
 - name: generate-versions
-  image: debian:9
+  image: debian:stretch-slim
   commands:
   - cp base/90prosody-backports /etc/apt/preferences.d/
   - apt-get update
@@ -43,7 +43,7 @@ steps:
       from_secret: docker_password
 
 - name: set-tag-web
-  image: alpine:3.10
+  image: debian:stretch-slim
   commands:
   - APPVERSION=`cat web-ng/version | cut -d~ -f 1 | cut -d+ -f 1`
   - echo $APPVERSION,latest,$APPVERSION-$DRONE_BUILD_NUMBER > .tags
@@ -58,8 +58,19 @@ steps:
     password:
       from_secret: docker_password
 
+- name: quay-jitsi-web-ng
+  image: plugins/docker
+  settings:
+    dockerfile: web-ng/Dockerfile
+    repo: quay.io/tlemarchand/jitsi-web-ng
+    username:
+      from_secret: quay_username
+    password:
+      from_secret: quay_password
+    registry: quay.io
+
 - name: set-tag-jicofo
-  image: alpine:3.10
+  image: debian:stretch-slim
   commands:
   - APPVERSION=`cat jicofo/version | cut -d~ -f 1 | cut -d+ -f 1`
   - echo $APPVERSION,latest,$APPVERSION-$DRONE_BUILD_NUMBER > .tags
@@ -74,8 +85,19 @@ steps:
     password:
       from_secret: docker_password
 
+- name: quay-jitsi-jicofo
+  image: plugins/docker
+  settings:
+    dockerfile: jicofo/Dockerfile
+    repo: quay.io/tlemarchand/jitsi-jicofo
+    username:
+      from_secret: quay_username
+    password:
+      from_secret: quay_password
+    registry: quay.io
+
 - name: set-tag-jigasi
-  image: alpine:3.10
+  image: debian:stretch-slim
   commands:
   - APPVERSION=`cat jigasi/version | cut -d~ -f 1 | cut -d+ -f 1`
   - echo $APPVERSION,latest,$APPVERSION-$DRONE_BUILD_NUMBER > .tags
@@ -90,8 +112,19 @@ steps:
     password:
       from_secret: docker_password
 
+- name: quay-jitsi-jigasi
+  image: plugins/docker
+  settings:
+    dockerfile: jigasi/Dockerfile
+    repo: quay.io/tlemarchand/jitsi-jigasi
+    username:
+      from_secret: quay_username
+    password:
+      from_secret: quay_password
+    registry: quay.io
+
 - name: set-tag-jvb
-  image: alpine:3.10
+  image: debian:stretch-slim
   commands:
   - APPVERSION=`cat jvb/version | cut -d~ -f 1 | cut -d+ -f 1`
   - echo $APPVERSION,latest,$APPVERSION-$DRONE_BUILD_NUMBER > .tags
@@ -106,8 +139,19 @@ steps:
     password:
       from_secret: docker_password
 
+- name: quay-jitsi-jvb
+  image: plugins/docker
+  settings:
+    dockerfile: jvb/Dockerfile
+    repo: quay.io/tlemarchand/jitsi-jvb
+    username:
+      from_secret: quay_username
+    password:
+      from_secret: quay_password
+    registry: quay.io
+
 - name: set-tag-prosody
-  image: alpine:3.10
+  image: debian:stretch-slim
   commands:
   - APPVERSION=`cat prosody/version | cut -d~ -f 1 | cut -d+ -f 1`
   - echo $APPVERSION,latest,$APPVERSION-$DRONE_BUILD_NUMBER > .tags
@@ -121,3 +165,14 @@ steps:
       from_secret: docker_username
     password:
       from_secret: docker_password
+
+- name: quay-jitsi-prosody
+  image: plugins/docker
+  settings:
+    dockerfile: prosody/Dockerfile
+    repo: quay.io/tlemarchand/jitsi-prosody   
+    username:
+      from_secret: quay_username
+    password:
+      from_secret: quay_password
+    registry: quay.io
