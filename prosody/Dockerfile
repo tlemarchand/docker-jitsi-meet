@@ -1,4 +1,5 @@
-FROM jitsi/base
+ARG JITSI_REPO=jitsi
+FROM ${JITSI_REPO}/base
 
 COPY base/90prosody-backports /etc/apt/preferences.d/
 COPY prosody/version /tmp/
