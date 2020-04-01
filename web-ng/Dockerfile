@@ -2,7 +2,7 @@ FROM nginx:1.17
 
 ARG JITSI_RELEASE=stable
 
-ENV JICOFO_AUTH_USER=focus
+ENV JICOFO_AUTH_USER=focus \
     XMPP_DOMAIN=meet.jitsi \
     XMPP_AUTH_DOMAIN=auth.meet.jitsi \
     XMPP_BOSH_URL_BASE=http://prosody:5280 \
