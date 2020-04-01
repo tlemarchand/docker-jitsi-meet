@@ -34,4 +34,4 @@ RUN apt-get update && \
         -e "s#enabled: true,#enabled: false,#" \
         /usr/share/templates/config.js.template
 
-CMD envsubst '${XMPP_BOSH_URL_BASE}' < /usr/share/templates/jitsi-meet.conf.template > /etc/nginx/conf.d/jitsi-meet.conf && envsubst < /usr/share/templates/config.js.template > /srv/jitsi/meet/config/config.js && exec nginx -g 'daemon off;'
+CMD envsubst < /usr/share/templates/jitsi-meet.conf.template > /etc/nginx/conf.d/jitsi-meet.conf && envsubst < /usr/share/templates/config.js.template > /srv/jitsi/meet/config/config.js && exec nginx -g 'daemon off;'
