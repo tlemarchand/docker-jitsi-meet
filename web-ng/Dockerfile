@@ -7,7 +7,6 @@ ENV JICOFO_AUTH_USER=focus \
     XMPP_AUTH_DOMAIN=auth.meet.jitsi \
     XMPP_BOSH_URL_BASE=http://prosody:5280 \
     XMPP_MUC_DOMAIN=muc.meet.jitsi \
-    PUBLIC_URL=jitsi.jitsi
 
 ADD https://download.jitsi.org/jitsi-key.gpg.key /tmp/jitsi.key
 COPY web-ng/version /tmp/
@@ -28,10 +27,10 @@ RUN apt-get update && \
     mv /usr/share/jitsi-meet/interface_config.js /srv/jitsi/meet/config/ && \
     cp /usr/share/jitsi-meet-web-config/config.js /usr/share/templates/config.js.template && \
     sed -i \
-        -e "s#jitsi-meet.example.com#${XMPP_DOMAIN}#g" \
-        -e "s#bosh:.*#bosh: '${PUBLIC_URL}/http-bind',#" \
-        -e "s#muc:.*#muc: '${XMPP_MUC_DOMAIN}',#" \
-        -e "s#// focusUserJid:.*#focusUserJid: '${JICOFO_AUTH_USER}@${XMPP_AUTH_DOMAIN}',#" \
+        -e "s#jitsi-meet.example.com#\$\{XMPP_DOMAIN\}#g" \
+        -e "s#bosh:.*#bosh: '/http-bind',#" \
+        -e "s#muc:.*#muc: '\$\{XMPP_MUC_DOMAIN\}',#" \
+        -e "s#// focusUserJid:.*#focusUserJid: '\$\{JICOFO_AUTH_USER\}@\$\{XMPP_AUTH_DOMAIN\}',#" \
         -e "s#enabled: true,#enabled: false,#" \
         /usr/share/templates/config.js.template
 
