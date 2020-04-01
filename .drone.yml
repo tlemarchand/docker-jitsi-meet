@@ -18,7 +18,7 @@ steps:
   - "apt-cache policy jitsi-meet-web | sed -n -e 's/^.*Candidate: //p' | tr -d '\n' > web-ng/version"
   - "apt-cache policy jicofo | sed -n -e 's/^.*Candidate: //p' | tr -d '\n' > jicofo/version"
   - "apt-cache policy jigasi | sed -n -e 's/^.*Candidate: //p' | tr -d '\n' > jigasi/version"
-  - "apt-cache policy jitsi-videobridge | sed -n -e 's/^.*Candidate: //p' | tr -d '\n' > jvb/version"
+  - "apt-cache policy jitsi-videobridge2 | sed -n -e 's/^.*Candidate: //p' | tr -d '\n' > jvb/version"
   - "apt-cache policy prosody | sed -n -e 's/^.*Candidate: //p' | tr -d '\n' > prosody/version"
 
 - name: docker-jitsi-base
