@@ -5,6 +5,8 @@ ARG JITSI_RELEASE=stable
 COPY base/dl_url_s6-overlay /tmp/
 COPY base/dl_url_frep /tmp/
 
+ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
+
 ADD https://download.jitsi.org/jitsi-key.gpg.key /tmp/jitsi.key
 
 COPY base/rootfs /

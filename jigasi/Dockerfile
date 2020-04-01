@@ -3,6 +3,8 @@ FROM ${JITSI_REPO}/base-java
 
 COPY jigasi/version /tmp/
 
+ENV GOOGLE_APPLICATION_CREDENTIALS /config/key.json
+
 RUN \
 	apt-dpkg-wrap apt-get update && \
 	apt-dpkg-wrap apt-get install -y jigasi=`cat /tmp/version` && \
@@ -10,4 +12,4 @@ RUN \
 
 COPY jigasi/rootfs/ /
 
-VOLUME /config
+VOLUME ["/config", "/tmp/transcripts"]

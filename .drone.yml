@@ -5,11 +5,12 @@ steps:
 - name: generate-versions
   image: debian:stretch-slim
   commands:
-  - cp base/90prosody-backports /etc/apt/preferences.d/
+  - wget https://prosody.im/files/prosody-debian-packages.key -O /tmp/prosody.key
+  - apt-key add /tmp/prosody.key
   - apt-get update
   - apt-get install -y apt-transport-https
   - echo "deb https://download.jitsi.org stable/" > /etc/apt/sources.list.d/jitsi.list
-  - echo "deb http://ftp.debian.org/debian stretch-backports main" > /etc/apt/sources.list.d/backports.list
+  - echo "deb http://packages.prosody.im/debian stretch main" > /etc/apt/sources.list.d/prosody.list
   - apt-get update
   - apt-get install -y jq curl
   - curl -s 'https://api.github.com/repos/just-containers/s6-overlay/releases/latest' | jq -r '.assets[].browser_download_url' | grep -e 'amd64.tar.gz$' | tr -d '\n' > base/dl_url_s6-overlay
