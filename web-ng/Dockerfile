@@ -18,7 +18,7 @@ RUN apt-get update && \
     apt-get install -y apt-transport-https apt-utils ca-certificates gnupg && \
     apt-key add /tmp/jitsi.key && \
     rm -f /tmp/jitsi.key && \
-    mkdir -p /etc/nginx/sites-available && \
+    mkdir -p /etc/nginx/sites-available /etc/nginx/sites-enabled && \
     echo "deb https://download.jitsi.org $JITSI_RELEASE/" > /etc/apt/sources.list.d/jitsi.list && \
     apt-get update && apt-get install -y jitsi-meet-web=`cat /tmp/version` jitsi-meet-web-config && \
     apt-get autoremove --purge -y gnupg && \
