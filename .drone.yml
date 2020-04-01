@@ -6,7 +6,7 @@ steps:
   image: debian:stretch-slim
   commands:
   - apt-get update
-  - apt-get install -y apt-transport-https wget
+  - apt-get install -y apt-transport-https wget gnupg
   - wget https://prosody.im/files/prosody-debian-packages.key -O /tmp/prosody.key
   - apt-key add /tmp/prosody.key
   - echo "deb https://download.jitsi.org stable/" > /etc/apt/sources.list.d/jitsi.list
