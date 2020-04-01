@@ -7,7 +7,7 @@ ENV JICOFO_AUTH_USER=focus \
     XMPP_AUTH_DOMAIN=auth.meet.jitsi \
     XMPP_BOSH_URL_BASE=http://prosody:5280 \
     XMPP_MUC_DOMAIN=muc.meet.jitsi \
-    PUBLIC_URL=jitsi.jitsi \
+    PUBLIC_URL=jitsi.jitsi
 
 ADD https://download.jitsi.org/jitsi-key.gpg.key /tmp/jitsi.key
 COPY web-ng/version /tmp/
