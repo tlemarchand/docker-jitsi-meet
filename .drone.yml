@@ -21,28 +21,6 @@ steps:
   - "apt-cache policy jitsi-videobridge2 | sed -n -e 's/^.*Candidate: //p' | tr -d '\n' > jvb/version"
   - "apt-cache policy prosody | sed -n -e 's/^.*Candidate: //p' | tr -d '\n' > prosody/version"
 
-- name: docker-jitsi-base
-  image: plugins/docker
-  settings:
-    dockerfile: base/Dockerfile
-    repo: tlemarchand/jitsi-base
-    tags: latest
-    username:
-      from_secret: docker_username
-    password:
-      from_secret: docker_password
-
-- name: docker-jitsi-base-java
-  image: plugins/docker
-  settings:
-    dockerfile: base-java/Dockerfile
-    repo: tlemarchand/jitsi-base-java
-    tags: latest
-    username:
-      from_secret: docker_username
-    password:
-      from_secret: docker_password
-
 - name: set-tag-web
   image: debian:stretch-slim
   commands:
@@ -69,6 +47,28 @@ steps:
     password:
       from_secret: quay_password
     registry: quay.io
+
+- name: docker-jitsi-base
+  image: plugins/docker
+  settings:
+    dockerfile: base/Dockerfile
+    repo: tlemarchand/jitsi-base
+    tags: latest
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+
+- name: docker-jitsi-base-java
+  image: plugins/docker
+  settings:
+    dockerfile: base-java/Dockerfile
+    repo: tlemarchand/jitsi-base-java
+    tags: latest
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
 
 - name: set-tag-jicofo
   image: debian:stretch-slim
