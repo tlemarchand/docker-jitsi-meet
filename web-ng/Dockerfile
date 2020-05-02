@@ -37,7 +37,7 @@ RUN apt-get update && \
         -e "s#//         height: {#        height: {#" \
         -e "s#//             ideal: 720,#            ideal: 360,#" \
         -e "s#//             max: 720,#            max: 360,#" \
-        -e "s#//             min: 240#            min: 240\n            }\n        }\n    },#"
+        -e "s#//             min: 240#            min: 240\n            }\n        }\n    },#" \
         /usr/share/templates/config.js.template
 
 CMD envsubst '${XMPP_BOSH_URL_BASE} ${XMPP_DOMAIN}' < /usr/share/templates/jitsi-meet.conf.template > /etc/nginx/conf.d/jitsi-meet.conf && envsubst < /usr/share/templates/config.js.template > /srv/jitsi/meet/config/config.js && exec nginx -g 'daemon off;'
